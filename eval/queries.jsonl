@@ -1,0 +1,15 @@
+{"id": "q01", "query": "How long do we keep nightly backups?", "gold": ["rb-backup-retention"], "tag": "status-conflict"}
+{"id": "q02", "query": "What is the API rate limit per token?", "gold": ["ref-api-rate-limits"], "tag": "trust-conflict"}
+{"id": "q03", "query": "How much does the Team plan cost per seat?", "gold": ["ref-pricing-2026"], "tag": "freshness-conflict"}
+{"id": "q04", "query": "Which job queue technology do we use now?", "gold": ["adr-009-job-queue"], "tag": "status-conflict"}
+{"id": "q05", "query": "Which vector database did we choose for help-centre search?", "gold": ["adr-014-vector-store"], "tag": "trust-conflict"}
+{"id": "q06", "query": "How do I roll back a bad deploy?", "gold": ["rb-deploy"], "tag": "keyword"}
+{"id": "q07", "query": "What caused the queue backlog in INC-042?", "gold": ["pm-inc-042-queue-backlog"], "tag": "keyword"}
+{"id": "q08", "query": "When is the on-call handover?", "gold": ["rb-oncall"], "tag": "keyword"}
+{"id": "q09", "query": "How long is an access token valid?", "gold": ["adr-012-auth-tokens"], "tag": "paraphrase"}
+{"id": "q10", "query": "Can a customer get their money back?", "gold": ["faq-refunds"], "tag": "paraphrase"}
+{"id": "q11", "query": "What does canary mean?", "gold": ["ref-glossary"], "tag": "keyword"}
+{"id": "q12", "query": "How should a new engineer set up their laptop?", "gold": ["guide-laptop-setup"], "tag": "paraphrase"}
+{"id": "q13", "query": "How often do we run restore drills?", "gold": ["rb-backup-retention"], "tag": "status-conflict"}
+{"id": "q14", "query": "Who gets paged when nobody acknowledges an alert?", "gold": ["rb-oncall"], "tag": "paraphrase"}
+{"id": "q15", "query": "What went wrong in the login outage?", "gold": ["pm-inc-031-login-outage"], "tag": "archived-gold"}

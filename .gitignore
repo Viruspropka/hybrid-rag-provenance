@@ -1,0 +1,16 @@
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+.pytest_cache/
+.hrag/
+build/
+dist/
+*.sqlite
+*.sqlite-wal
+*.sqlite-shm
+*.npy
+.env
+.env.*
+eval/runs/

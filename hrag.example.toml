@@ -1,0 +1,86 @@
+# Example configuration. Copy to hrag.toml (or point HRAG_CONFIG at it) and edit.
+# Every key is optional; missing keys keep the defaults shown here.
+# Relative paths are resolved against this file's folder.
+# Environment variables override the file: HRAG_VAULT, HRAG_DATA_DIR, HRAG_EMBEDDER,
+# HRAG_EMBED_MODEL, HRAG_EMBED_DEVICE, HRAG_RERANKER, HRAG_RERANKER_MODEL,
+# HRAG_PROVENANCE, HRAG_REFERENCE_DATE, HRAG_SOCKET.
+
+[paths]
+vault = "notes"                 # folder of markdown notes (default: the bundled sample vault)
+data_dir = ".hrag"              # index.sqlite, dense.npy, dense_ids.json
+exclude = ["README.md"]
+
+[embedder]
+backend = "sentence-transformers"   # needs: pip install ".[models]"; weights download on first use
+model = "BAAI/bge-m3"               # any sentence-transformers model name works
+fallback = "hashing"                # used (and logged) when the backend cannot load
+device = "auto"                     # auto | cpu | mps | cuda
+max_seq_length = 1536
+batch_size = 16
+hashing_dim = 512
+
+[reranker]
+backend = "none"                    # none | overlap | cross-encoder | flashrank
+model = "BAAI/bge-reranker-v2-m3"   # for cross-encoder
+flashrank_model = "ms-marco-MultiBERT-L-12"
+min_spread = 0.01
+pool = 24
+
+[retrieval]
+dense_top_k = 20
+sparse_top_k = 20
+rrf_k = 20
+max_chunks_per_note = 2
+inference_timeout_s = 25.0
+low_confidence_coverage = 0.34
+
+[provenance]
+enabled = true
+status_filter = true
+tier = true
+trust = true
+freshness = true
+status = true
+doc_type = true
+reference_date = ""                 # "" = today; YYYY-MM-DD for reproducible runs
+default_reliability = 0.85
+default_volatility = "slow"
+trust_floor = 0.5
+freshness_floor = 0.8
+hidden_statuses = ["superseded", "archived"]
+
+[provenance.half_life_days]
+slow = 365
+fast = 45
+
+[provenance.status_multipliers]
+active = 1.0
+draft = 0.9
+superseded = 0.5
+archived = 0.3
+
+[provenance.tier_multipliers]
+"0" = 1.05
+"1" = 1.02
+"2" = 1.00
+"3" = 0.97
+"4" = 0.95
+
+[provenance.authorship_weights]
+human = 1.0
+tool = 0.98
+model = 0.95
+unknown = 0.95
+
+[provenance.type_multipliers]
+session = 0.60
+research = 0.85
+
+[fastpath]
+exact_key_pattern = '\b(?:ADR|INC|RB)-\d{1,4}\b'   # "" turns the plugin off
+
+[daemon]
+socket = ""                         # "" = $TMPDIR/hrag-<uid>.sock
+admit_wait_s = 5.0
+admit_max_waiters = 4
+max_query_chars = 2000
