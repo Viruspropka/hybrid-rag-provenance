@@ -1,0 +1,509 @@
+{
+  "answer": {
+    "by_tag": {
+      "keyword-heavy": {
+        "answer_term_recall": 0.5277777777777778,
+        "answered_rate": 0.6666666666666666,
+        "citation_precision": 0.875,
+        "citation_recall": 0.5833333333333334,
+        "citations_in_retrieved_rate": 1.0,
+        "faithfulness_proxy": 1.0,
+        "false_abstention_rate": 0.33333333333333337,
+        "n_answerable": 12,
+        "n_unanswerable": 0
+      },
+      "multi-hop": {
+        "answer_term_recall": 0.1507936507936508,
+        "answered_rate": 0.2222222222222222,
+        "citation_precision": 1.0,
+        "citation_recall": 0.16666666666666666,
+        "citations_in_retrieved_rate": 1.0,
+        "faithfulness_proxy": 1.0,
+        "false_abstention_rate": 0.7777777777777778,
+        "n_answerable": 9,
+        "n_unanswerable": 0
+      },
+      "paraphrase": {
+        "answer_term_recall": 0.15625,
+        "answered_rate": 0.16666666666666666,
+        "citation_precision": 1.0,
+        "citation_recall": 0.16666666666666666,
+        "citations_in_retrieved_rate": 1.0,
+        "faithfulness_proxy": 1.0,
+        "false_abstention_rate": 0.8333333333333334,
+        "n_answerable": 12,
+        "n_unanswerable": 0
+      },
+      "stale-vs-fresh": {
+        "answer_term_recall": 0.6727272727272727,
+        "answered_rate": 0.8181818181818182,
+        "citation_precision": 0.7777777777777778,
+        "citation_recall": 0.6363636363636364,
+        "citations_in_retrieved_rate": 1.0,
+        "faithfulness_proxy": 1.0,
+        "false_abstention_rate": 0.18181818181818177,
+        "n_answerable": 11,
+        "n_unanswerable": 0
+      },
+      "unanswerable": {
+        "n_answerable": 0,
+        "n_unanswerable": 7,
+        "unanswerable_abstention_rate": 0.8571428571428571
+      }
+    },
+    "config": "hybrid_prov",
+    "overall": {
+      "answer_term_recall": 0.3855790043290044,
+      "answered_rate": 0.4772727272727273,
+      "citation_precision": 0.8571428571428571,
+      "citation_recall": 0.3977272727272727,
+      "citations_in_retrieved_rate": 1.0,
+      "faithfulness_proxy": 1.0,
+      "false_abstention_rate": 0.5227272727272727,
+      "n_answerable": 44,
+      "n_unanswerable": 7,
+      "unanswerable_abstention_rate": 0.8571428571428571
+    },
+    "sweep": [
+      {
+        "abstain_below": 0.0,
+        "answer_term_recall": 0.6001598780007871,
+        "answered_rate": 1.0,
+        "citation_precision": 0.7386363636363636,
+        "citation_recall": 0.6704545454545454,
+        "citations_in_retrieved_rate": 1.0,
+        "faithfulness_proxy": 1.0,
+        "false_abstention_rate": 0.0,
+        "n_answerable": 44,
+        "n_unanswerable": 7,
+        "retriever_flag": false,
+        "unanswerable_abstention_rate": 0.0
+      },
+      {
+        "abstain_below": 0.25,
+        "answer_term_recall": 0.5939615308933491,
+        "answered_rate": 0.8863636363636364,
+        "citation_precision": 0.7692307692307693,
+        "citation_recall": 0.625,
+        "citations_in_retrieved_rate": 1.0,
+        "faithfulness_proxy": 1.0,
+        "false_abstention_rate": 0.11363636363636365,
+        "n_answerable": 44,
+        "n_unanswerable": 7,
+        "retriever_flag": false,
+        "unanswerable_abstention_rate": 0.2857142857142857
+      },
+      {
+        "abstain_below": 0.34,
+        "answer_term_recall": 0.4708062770562771,
+        "answered_rate": 0.6363636363636364,
+        "citation_precision": 0.8214285714285714,
+        "citation_recall": 0.48863636363636365,
+        "citations_in_retrieved_rate": 1.0,
+        "faithfulness_proxy": 1.0,
+        "false_abstention_rate": 0.36363636363636365,
+        "n_answerable": 44,
+        "n_unanswerable": 7,
+        "retriever_flag": false,
+        "unanswerable_abstention_rate": 0.42857142857142855
+      },
+      {
+        "abstain_below": 0.5,
+        "answer_term_recall": 0.4026244588744589,
+        "answered_rate": 0.5,
+        "citation_precision": 0.8636363636363636,
+        "citation_recall": 0.4090909090909091,
+        "citations_in_retrieved_rate": 1.0,
+        "faithfulness_proxy": 1.0,
+        "false_abstention_rate": 0.5,
+        "n_answerable": 44,
+        "n_unanswerable": 7,
+        "retriever_flag": false,
+        "unanswerable_abstention_rate": 0.7142857142857143
+      },
+      {
+        "abstain_below": 0.0,
+        "answer_term_recall": 0.5389880952380953,
+        "answered_rate": 0.7727272727272727,
+        "citation_precision": 0.7941176470588235,
+        "citation_recall": 0.5681818181818182,
+        "citations_in_retrieved_rate": 1.0,
+        "faithfulness_proxy": 1.0,
+        "false_abstention_rate": 0.2272727272727273,
+        "n_answerable": 44,
+        "n_unanswerable": 7,
+        "retriever_flag": true,
+        "unanswerable_abstention_rate": 0.5714285714285714
+      },
+      {
+        "abstain_below": 0.25,
+        "answer_term_recall": 0.5389880952380953,
+        "answered_rate": 0.7045454545454546,
+        "citation_precision": 0.8387096774193549,
+        "citation_recall": 0.5568181818181818,
+        "citations_in_retrieved_rate": 1.0,
+        "faithfulness_proxy": 1.0,
+        "false_abstention_rate": 0.2954545454545454,
+        "n_answerable": 44,
+        "n_unanswerable": 7,
+        "retriever_flag": true,
+        "unanswerable_abstention_rate": 0.5714285714285714
+      },
+      {
+        "abstain_below": 0.34,
+        "answer_term_recall": 0.45376082251082256,
+        "answered_rate": 0.6136363636363636,
+        "citation_precision": 0.8148148148148148,
+        "citation_recall": 0.4772727272727273,
+        "citations_in_retrieved_rate": 1.0,
+        "faithfulness_proxy": 1.0,
+        "false_abstention_rate": 0.38636363636363635,
+        "n_answerable": 44,
+        "n_unanswerable": 7,
+        "retriever_flag": true,
+        "unanswerable_abstention_rate": 0.5714285714285714
+      },
+      {
+        "abstain_below": 0.5,
+        "answer_term_recall": 0.3855790043290044,
+        "answered_rate": 0.4772727272727273,
+        "citation_precision": 0.8571428571428571,
+        "citation_recall": 0.3977272727272727,
+        "citations_in_retrieved_rate": 1.0,
+        "faithfulness_proxy": 1.0,
+        "false_abstention_rate": 0.5227272727272727,
+        "n_answerable": 44,
+        "n_unanswerable": 7,
+        "retriever_flag": true,
+        "unanswerable_abstention_rate": 0.8571428571428571
+      }
+    ],
+    "thresholds": {
+      "abstain_below_coverage": 0.5,
+      "context_hits": 5,
+      "max_sentences": 2,
+      "second_sentence_min_new_terms": 2,
+      "support_threshold": 0.6
+    }
+  },
+  "configs": [
+    {
+      "key": "fts5",
+      "mode": "sparse",
+      "name": "FTS5 only (BM25)",
+      "provenance": false,
+      "reranker": "none",
+      "rrf_k": null,
+      "status_filter": false
+    },
+    {
+      "key": "dense",
+      "mode": "dense",
+      "name": "Dense only",
+      "provenance": false,
+      "reranker": "none",
+      "rrf_k": null,
+      "status_filter": false
+    },
+    {
+      "key": "hybrid",
+      "mode": "hybrid",
+      "name": "Hybrid RRF (k=20)",
+      "provenance": false,
+      "reranker": "none",
+      "rrf_k": 20,
+      "status_filter": false
+    },
+    {
+      "key": "hybrid_prov",
+      "mode": "hybrid",
+      "name": "Hybrid RRF (k=20) + provenance",
+      "provenance": true,
+      "reranker": "none",
+      "rrf_k": 20,
+      "status_filter": true
+    },
+    {
+      "key": "hybrid_prov_k60",
+      "mode": "hybrid",
+      "name": "Hybrid RRF (k=60) + provenance",
+      "provenance": true,
+      "reranker": "none",
+      "rrf_k": 60,
+      "status_filter": true
+    },
+    {
+      "key": "hybrid_prov_rerank",
+      "mode": "hybrid",
+      "name": "Hybrid RRF (k=20) + provenance + reranker",
+      "provenance": true,
+      "reranker": "overlap",
+      "rrf_k": 20,
+      "status_filter": true
+    }
+  ],
+  "depth": 10,
+  "embedder": "hashing-512",
+  "fastpath": "off",
+  "fetch_chunks": 40,
+  "n_answerable": 44,
+  "n_questions": 51,
+  "n_unanswerable": 7,
+  "profile": "hashing-512+overlap",
+  "questions_file": "eval/questions.jsonl",
+  "questions_sha256": "83ac7aebf93e058ff7837251ca5c0500f00a3efc6c2b2d65232549174e7ab728",
+  "reference_date": "2026-11-01",
+  "reranker": "overlap",
+  "retrieval": {
+    "dense": {
+      "by_tag": {
+        "keyword-heavy": {
+          "mrr@10": 0.9305555555555555,
+          "n": 12,
+          "recall@1": 0.9166666666666666,
+          "recall@10": 1.0,
+          "recall@5": 0.9166666666666666
+        },
+        "multi-hop": {
+          "mrr@10": 1.0,
+          "n": 9,
+          "recall@1": 0.5,
+          "recall@10": 1.0,
+          "recall@5": 0.8333333333333334
+        },
+        "paraphrase": {
+          "mrr@10": 0.5625,
+          "n": 12,
+          "recall@1": 0.4166666666666667,
+          "recall@10": 0.9166666666666666,
+          "recall@5": 0.6666666666666666
+        },
+        "stale-vs-fresh": {
+          "mrr@10": 0.7878787878787878,
+          "n": 11,
+          "recall@1": 0.6363636363636364,
+          "recall@10": 1.0,
+          "recall@5": 1.0
+        }
+      },
+      "name": "Dense only",
+      "overall": {
+        "mrr@10": 0.8087121212121212,
+        "n": 44,
+        "recall@1": 0.625,
+        "recall@10": 0.9772727272727273,
+        "recall@5": 0.8522727272727273
+      }
+    },
+    "fts5": {
+      "by_tag": {
+        "keyword-heavy": {
+          "mrr@10": 1.0,
+          "n": 12,
+          "recall@1": 1.0,
+          "recall@10": 1.0,
+          "recall@5": 1.0
+        },
+        "multi-hop": {
+          "mrr@10": 0.9444444444444444,
+          "n": 9,
+          "recall@1": 0.4444444444444444,
+          "recall@10": 1.0,
+          "recall@5": 1.0
+        },
+        "paraphrase": {
+          "mrr@10": 0.7592592592592592,
+          "n": 12,
+          "recall@1": 0.5833333333333334,
+          "recall@10": 1.0,
+          "recall@5": 0.9166666666666666
+        },
+        "stale-vs-fresh": {
+          "mrr@10": 0.8181818181818182,
+          "n": 11,
+          "recall@1": 0.6363636363636364,
+          "recall@10": 1.0,
+          "recall@5": 1.0
+        }
+      },
+      "name": "FTS5 only (BM25)",
+      "overall": {
+        "mrr@10": 0.8775252525252526,
+        "n": 44,
+        "recall@1": 0.6818181818181818,
+        "recall@10": 1.0,
+        "recall@5": 0.9772727272727273
+      }
+    },
+    "hybrid": {
+      "by_tag": {
+        "keyword-heavy": {
+          "mrr@10": 1.0,
+          "n": 12,
+          "recall@1": 1.0,
+          "recall@10": 1.0,
+          "recall@5": 1.0
+        },
+        "multi-hop": {
+          "mrr@10": 1.0,
+          "n": 9,
+          "recall@1": 0.5,
+          "recall@10": 1.0,
+          "recall@5": 1.0
+        },
+        "paraphrase": {
+          "mrr@10": 0.7453703703703703,
+          "n": 12,
+          "recall@1": 0.6666666666666666,
+          "recall@10": 0.9166666666666666,
+          "recall@5": 0.8333333333333334
+        },
+        "stale-vs-fresh": {
+          "mrr@10": 0.712121212121212,
+          "n": 11,
+          "recall@1": 0.45454545454545453,
+          "recall@10": 1.0,
+          "recall@5": 1.0
+        }
+      },
+      "name": "Hybrid RRF (k=20)",
+      "overall": {
+        "mrr@10": 0.8585858585858586,
+        "n": 44,
+        "recall@1": 0.6704545454545454,
+        "recall@10": 0.9772727272727273,
+        "recall@5": 0.9545454545454546
+      }
+    },
+    "hybrid_prov": {
+      "by_tag": {
+        "keyword-heavy": {
+          "mrr@10": 1.0,
+          "n": 12,
+          "recall@1": 1.0,
+          "recall@10": 1.0,
+          "recall@5": 1.0
+        },
+        "multi-hop": {
+          "mrr@10": 0.9444444444444444,
+          "n": 9,
+          "recall@1": 0.4444444444444444,
+          "recall@10": 0.9444444444444444,
+          "recall@5": 0.9444444444444444
+        },
+        "paraphrase": {
+          "mrr@10": 0.6091269841269841,
+          "n": 12,
+          "recall@1": 0.4166666666666667,
+          "recall@10": 0.9166666666666666,
+          "recall@5": 0.75
+        },
+        "stale-vs-fresh": {
+          "mrr@10": 0.9545454545454546,
+          "n": 11,
+          "recall@1": 0.9090909090909091,
+          "recall@10": 1.0,
+          "recall@5": 1.0
+        }
+      },
+      "name": "Hybrid RRF (k=20) + provenance",
+      "overall": {
+        "mrr@10": 0.8706709956709957,
+        "n": 44,
+        "recall@1": 0.7045454545454546,
+        "recall@10": 0.9659090909090909,
+        "recall@5": 0.9204545454545454
+      }
+    },
+    "hybrid_prov_k60": {
+      "by_tag": {
+        "keyword-heavy": {
+          "mrr@10": 0.875,
+          "n": 12,
+          "recall@1": 0.75,
+          "recall@10": 1.0,
+          "recall@5": 1.0
+        },
+        "multi-hop": {
+          "mrr@10": 0.9444444444444444,
+          "n": 9,
+          "recall@1": 0.4444444444444444,
+          "recall@10": 0.9444444444444444,
+          "recall@5": 0.9444444444444444
+        },
+        "paraphrase": {
+          "mrr@10": 0.560515873015873,
+          "n": 12,
+          "recall@1": 0.4166666666666667,
+          "recall@10": 0.9166666666666666,
+          "recall@5": 0.75
+        },
+        "stale-vs-fresh": {
+          "mrr@10": 0.9090909090909091,
+          "n": 11,
+          "recall@1": 0.8181818181818182,
+          "recall@10": 1.0,
+          "recall@5": 1.0
+        }
+      },
+      "name": "Hybrid RRF (k=60) + provenance",
+      "overall": {
+        "mrr@10": 0.8119588744588744,
+        "n": 44,
+        "recall@1": 0.6136363636363636,
+        "recall@10": 0.9659090909090909,
+        "recall@5": 0.9204545454545454
+      }
+    },
+    "hybrid_prov_rerank": {
+      "by_tag": {
+        "keyword-heavy": {
+          "mrr@10": 0.9583333333333334,
+          "n": 12,
+          "recall@1": 0.9166666666666666,
+          "recall@10": 1.0,
+          "recall@5": 1.0
+        },
+        "multi-hop": {
+          "mrr@10": 0.9444444444444444,
+          "n": 9,
+          "recall@1": 0.4444444444444444,
+          "recall@10": 0.9444444444444444,
+          "recall@5": 0.9444444444444444
+        },
+        "paraphrase": {
+          "mrr@10": 0.5285714285714286,
+          "n": 12,
+          "recall@1": 0.3333333333333333,
+          "recall@10": 0.9166666666666666,
+          "recall@5": 0.75
+        },
+        "stale-vs-fresh": {
+          "mrr@10": 1.0,
+          "n": 11,
+          "recall@1": 1.0,
+          "recall@10": 1.0,
+          "recall@5": 1.0
+        }
+      },
+      "name": "Hybrid RRF (k=20) + provenance + reranker",
+      "overall": {
+        "mrr@10": 0.8487012987012986,
+        "n": 44,
+        "recall@1": 0.6818181818181818,
+        "recall@10": 0.9659090909090909,
+        "recall@5": 0.9204545454545454
+      }
+    }
+  },
+  "schema": 1,
+  "seed": 42,
+  "subset": 0,
+  "tag_counts": {
+    "keyword-heavy": 12,
+    "multi-hop": 9,
+    "paraphrase": 12,
+    "stale-vs-fresh": 11,
+    "unanswerable": 7
+  }
+}

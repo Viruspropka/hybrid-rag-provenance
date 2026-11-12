@@ -134,6 +134,9 @@ def run_meta(run: dict, identical: list[str] | None = None) -> str:
         f"({m['n_questions']} questions: " + ", ".join(f"{t} {n}" for t, n in m["tag_counts"].items()) + ")",
         f"- Wall time: {e['wall_seconds']} s",
     ]
+    pk = e.get("packages") or {}
+    if pk:
+        lines.append("- Packages: " + ", ".join(f"{k} {v}" for k, v in sorted(pk.items())))
     if identical is not None:
         lines.append("- Determinism: " + (
             f"`metrics.json` is byte-identical in the runs {', '.join(f'`{x}`' for x in identical)}"
@@ -284,7 +287,9 @@ def regenerate(root: Path) -> list[Path]:
         out += [f"### `{rm['embedder']}` + reranker `{rm['reranker']}`", "",
                 "Needs `pip install -e \".[models]\"` and a one-time model download from Hugging Face "
                 "(no key). Same question set, seed and checker; only the embedder and the reranker differ.", "",
-                run_meta(r), "", retrieval_table(rm), "",
+                run_meta(r), "- Determinism: checked for the offline profile only; this profile was run once "
+                "(CPU inference, so repeated runs are expected but not verified to match)", "",
+                retrieval_table(rm), "",
                 "MRR@10 by tag:", "", tag_table(rm, "mrr@10"), "",
                 f"Answers (same extractive answerer on this profile's hybrid + provenance ranking): answered "
                 f"{t3(o.get('answered_rate'))}, citation precision {t3(o.get('citation_precision'))}, citation "
