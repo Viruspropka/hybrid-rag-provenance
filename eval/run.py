@@ -342,7 +342,9 @@ def answer_aggregate(answers: list[dict]) -> dict:
 
 
 def fmt(m: dict) -> str:
-    return " ".join(f"{k}={v:.3f}" if isinstance(v, float) else f"{k}={v}" for k, v in m.items())
+    """Log format: truncated to three decimals, exactly as in RESULTS.md (never rounded up)."""
+    from .report import t3
+    return " ".join(f"{k}={t3(v)}" if isinstance(v, float) else f"{k}={v}" for k, v in m.items())
 
 
 # ---------------------------------------------------------------- main
