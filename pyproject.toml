@@ -29,5 +29,5 @@ where = ["src"]
 hybrid_rag = ["sample_vault/*.md", "sample_vault/**/*.md"]
 
 [tool.pytest.ini_options]
-pythonpath = ["src"]
+pythonpath = ["src", "."]
 testpaths = ["tests"]

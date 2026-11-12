@@ -181,7 +181,7 @@ def build_parser() -> argparse.ArgumentParser:
 
     sp = sub.add_parser("eval", help="recall@k and MRR on labelled queries")
     common(sp)
-    sp.add_argument("--queries", default="eval/queries.jsonl")
+    sp.add_argument("--queries", default="eval/questions.jsonl")
     sp.add_argument("--per-query", action="store_true")
     sp.add_argument("--json-out")
     sp.set_defaults(fn=cmd_eval)

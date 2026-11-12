@@ -1,6 +1,9 @@
 """Small retrieval evaluation: recall@k and MRR on labelled queries.
 
-Queries are JSONL lines ``{"id", "query", "gold": [note ids], "tag"}``.
+Queries are JSONL lines ``{"id", "query", "gold": [note ids], "tag"}`` or, as in
+``eval/questions.jsonl``, ``{"id", "question", "gold_notes": [note ids], "tag", ...}``.
+Items without gold notes (unanswerable questions) are skipped here: this module
+scores retrieval only; ``eval/run.py`` scores answers and abstention too.
 Ranking is evaluated at NOTE level: chunk hits are collapsed to their note in
 order of first appearance.
 
@@ -43,6 +46,10 @@ def load_queries(path: str | Path) -> list[dict]:
         if not line or line.startswith("#"):
             continue
         item = json.loads(line)
+        if "question" in item:                      # eval/questions.jsonl schema
+            if not item.get("gold_notes"):
+                continue                            # unanswerable: no ranking to score
+            item = {**item, "query": item["question"], "gold": item["gold_notes"]}
         if not item.get("query") or not item.get("gold"):
             raise ValueError(f"{path}:{n}: each query needs 'query' and a non-empty 'gold' list")
         out.append(item)

@@ -12,7 +12,7 @@ from hybrid_rag.evaluation import (
 from hybrid_rag.notes import parse_frontmatter
 
 ROOT = Path(__file__).resolve().parents[1]
-QUERIES = ROOT / "eval" / "queries.jsonl"
+QUERIES = ROOT / "eval" / "questions.jsonl"
 
 
 def test_metrics_hand_computed():
@@ -29,6 +29,10 @@ def test_load_queries_validates(tmp_path):
     f.write_text('# comment\n{"id": "1", "query": "x", "gold": []}\n', encoding="utf-8")
     with pytest.raises(ValueError):
         load_queries(f)
+    g = tmp_path / "q2.jsonl"
+    g.write_text('{"id": "a", "question": "x", "gold_notes": ["n"], "tag": "t"}\n'
+                 '{"id": "u", "question": "y", "gold_notes": [], "tag": "unanswerable"}\n', encoding="utf-8")
+    assert [q["id"] for q in load_queries(g)] == ["a"] and load_queries(g)[0]["query"] == "x"
 
 
 def test_eval_on_sample_vault_is_deterministic(tmp_path):
@@ -42,7 +46,7 @@ def test_eval_on_sample_vault_is_deterministic(tmp_path):
     b = run_eval(cfg, qs, embedder=emb)
     assert [r.metrics for r in a] == [r.metrics for r in b]
     rr = {r.name: {q["id"]: q["rr"] for q in r.per_query} for r in a}
-    conflicts = ["q01", "q02", "q03"]   # stale runbook, chat summary vs reference, two price lists
+    conflicts = ["sf-01", "sf-02", "sf-03"]   # stale runbook, chat summary vs reference, two price lists
     assert all(rr["Hybrid RRF + full provenance"][q] == 1.0 for q in conflicts)
     assert any(rr["Hybrid RRF, no provenance"][q] < 1.0 for q in conflicts)
     assert "| Configuration |" in markdown_table(a)

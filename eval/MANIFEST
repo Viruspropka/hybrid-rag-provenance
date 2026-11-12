@@ -1,0 +1,2 @@
+# sha256 of the frozen evaluation set. eval/run.py refuses to run if it differs.
+83ac7aebf93e058ff7837251ca5c0500f00a3efc6c2b2d65232549174e7ab728  questions.jsonl

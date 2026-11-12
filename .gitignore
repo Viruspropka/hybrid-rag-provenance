@@ -13,4 +13,3 @@ dist/
 *.npy
 .env
 .env.*
-eval/runs/
