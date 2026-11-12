@@ -380,6 +380,9 @@ def main(argv: list[str] | None = None) -> int:
     root_log.setLevel(logging.DEBUG)
     fh = logging.FileHandler(run_dir / "run.log", encoding="utf-8")
     fh.setFormatter(logging.Formatter("%(levelname)s %(name)s: %(message)s"))
+    # Only this harness and the library go into the committed log; third-party libraries
+    # (HTTP clients, model hubs) only with warnings, so no request headers or ids are kept.
+    fh.addFilter(lambda r: r.name.split(".")[0] in ("eval", "hybrid_rag") or r.levelno >= logging.WARNING)
     sh = logging.StreamHandler(sys.stdout)
     sh.setLevel(logging.INFO)
     sh.setFormatter(logging.Formatter("%(message)s"))

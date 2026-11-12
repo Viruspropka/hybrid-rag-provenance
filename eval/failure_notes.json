@@ -1,0 +1,16 @@
+{
+  "pa-01": "near-tie in fused score: without provenance faq-refunds was first; rb-deploy is newer and more reliable (0.95 vs 0.9), so the multipliers flipped the order (\"back\" in \"money back\" matches \"roll back\")",
+  "pa-03": "lexical trap: ADR-009 says workers \"acknowledge\" jobs; BM25 and the hashing embedder reward the shared word and cannot tell paging from queue semantics",
+  "pa-04": "BM25 alone ranks ADR-012 first, but the hashing embedder misses it (\"login credential\" shares no words with \"access token\") and RRF lets chunks found by both lists outscore a chunk found by one",
+  "pa-07": "pure paraphrase (\"how quickly ... lose the main database\" vs \"recovery time objective\"): BM25 has the runbook at rank 9 and the hashing embedder at rank 8, so fusion cannot recover it",
+  "pa-08": "\"infrastructure people\" matches nothing; without provenance team-platform was first, then freshness flipped the near-tie (the laptop guide was verified about five and a half months after the team charter)",
+  "pa-11": "the gold postmortem is archived and the question is not phrased as historical, so the status filter hides it; this is the cost of a hard filter (sf-11, phrased \"at the time\", finds it at rank 1)",
+  "pa-12": "\"access\" is shared with ADR-012's \"access tokens\" and wins both lists; the laptop guide is second",
+  "mh-01": "both gold notes are in the top 3, but the INC-042 postmortem (verified 12 days before the reference date) gets a larger freshness factor than the team charter and takes rank 1",
+  "sf-04": "the INC-042 postmortem repeats \"job queue\" most and was verified eight months after ADR-009; without the status filter the superseded ADR-003 was first, with it ADR-009 comes second",
+  "kw-07:answer": "the glossary's \"canary: a small share of real traffic\" covers more question terms than the runbook sentence with \"5 percent ... 30 minutes\"; the answerer ranks sentences by term coverage, not by whether they hold the asked-for number",
+  "mh-08:answer": "ADR-009's sentence covers \"replaced the SQLite job queue\"; ADR-003's reasons share no new question term, so no second sentence and no second citation are added",
+  "sf-04:answer": "retrieval put the INC-042 postmortem first and its backlog sentence repeats \"job queue\"; the answer is about a backlog, not the technology",
+  "sf-07:answer": "the generic glossary definition (\"requests allowed above the steady rate\") shares 4 of 6 question terms, the reference page's \"burst allowance of 50\" only 2; the retro sentence then adds a second, wrong citation",
+  "un-06:answer": "the retro note's \"raising the API rate limit\" covers 3 of the 4 question terms; only \"GraphQL\" is missing and term coverage cannot tell a missing qualifier from a missing detail"
+}
