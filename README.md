@@ -20,7 +20,7 @@ python3 -m venv .venv && . .venv/bin/activate
 pip install -r requirements-dev.txt     # numpy + pytest
 pip install -e .                        # installs the `hrag` command
 hrag demo                               # nine scenarios on the sample vault, ends with "demo OK"
-python -m pytest -q                     # 85 tests
+python -m pytest -q                     # 86 tests
 make eval                               # offline evaluation, writes eval/runs/<UTC time>/ and RESULTS.md
 ```
 

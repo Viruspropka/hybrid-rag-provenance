@@ -148,9 +148,10 @@ def block_network() -> None:
 
 
 def git(*args: str) -> str:
+    """Raw stdout of a git command (not stripped: porcelain lines start with a space)."""
     try:
         return subprocess.run(["git", *args], cwd=ROOT, capture_output=True, text=True, timeout=10,
-                              check=True).stdout.strip()
+                              check=True).stdout
     except (OSError, subprocess.SubprocessError):
         return ""
 
@@ -159,8 +160,8 @@ def code_state() -> dict:
     """HEAD commit and uncommitted changes outside the generated outputs."""
     generated = ("eval/runs/", "RESULTS.md", "README.md")
     dirty = [line[3:] for line in git("status", "--porcelain").splitlines()
-             if line[3:] and not line[3:].startswith(generated)]
-    return {"commit": git("rev-parse", "HEAD") or "unknown", "uncommitted_changes": dirty}
+             if len(line) > 3 and not line[3:].startswith(generated)]
+    return {"commit": git("rev-parse", "HEAD").strip() or "unknown", "uncommitted_changes": dirty}
 
 
 def machine() -> dict:

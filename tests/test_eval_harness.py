@@ -152,6 +152,12 @@ def test_eval_runs_on_a_seeded_5_question_subset(tmp_path):
     assert "hostname" not in json.dumps(env).lower() and env["machine"]["python"]
 
 
+def test_code_state_parses_porcelain(monkeypatch):
+    monkeypatch.setattr(R, "git", lambda *a: " M README.md\n M eval/run.py\n?? eval/runs/x/\n" if a[0] == "status"
+                        else "abc123\n")
+    assert R.code_state() == {"commit": "abc123", "uncommitted_changes": ["eval/run.py"]}
+
+
 def test_subset_is_seeded():
     items = [{"id": str(i)} for i in range(20)]
     assert R.subset(items, 5, 42) == R.subset(items, 5, 42)
