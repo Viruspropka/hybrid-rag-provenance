@@ -287,8 +287,8 @@ def regenerate(root: Path) -> list[Path]:
         out += [f"### `{rm['embedder']}` + reranker `{rm['reranker']}`", "",
                 "Needs `pip install -e \".[models]\"` and a one-time model download from Hugging Face "
                 "(no key). Same question set, seed and checker; only the embedder and the reranker differ.", "",
-                run_meta(r), "- Determinism: checked for the offline profile only; this profile was run once "
-                "(CPU inference, so repeated runs are expected but not verified to match)", "",
+                run_meta(r), "- Determinism: this profile has one run in this folder, so repeat runs are not "
+                "compared automatically here (the offline profile's are)", "",
                 retrieval_table(rm), "",
                 "MRR@10 by tag:", "", tag_table(rm, "mrr@10"), "",
                 f"Answers (same extractive answerer on this profile's hybrid + provenance ranking): answered "
