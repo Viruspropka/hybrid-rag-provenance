@@ -1,7 +1,9 @@
-# Verified false positives (generic-api-key) in commit a6a4017: the matched text is
-# "key": "hybrid_prov_k60", a configuration id in eval/runs/*/metrics.json, not a secret.
-# The field was renamed to "id" in the next commit; these fingerprints only cover that commit.
+# Verified false positives of the generic-api-key rule, no secrets involved:
+# - commit a6a4017: a JSON field named key whose value was the configuration id hybrid_prov_k60
+#   (eval/runs/*/metrics.json); the field is called id since commit db91da5.
+# - commit db91da5: the comment in this file that quoted that field.
 a6a4017dc8fcbe692c3c19a30088c7e3229449c8:eval/runs/20261112T052038Z/metrics.json:generic-api-key:227
 a6a4017dc8fcbe692c3c19a30088c7e3229449c8:eval/runs/20261112T052036Z/metrics.json:generic-api-key:227
 a6a4017dc8fcbe692c3c19a30088c7e3229449c8:eval/runs/20261112T052059Z/metrics.json:generic-api-key:227
 a6a4017dc8fcbe692c3c19a30088c7e3229449c8:eval/runs/20261112T052037Z/metrics.json:generic-api-key:227
+db91da51b561609c9ee527484816dde2063cb1ec:.gitleaksignore:generic-api-key:2
