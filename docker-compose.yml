@@ -1,0 +1,7 @@
+# `docker compose up` runs the scripted demo on the bundled synthetic vault and exits.
+# Default path needs no keys and no network once the image is built.
+services:
+  demo:
+    build: .
+    command: ["python", "-m", "hybrid_rag", "demo"]
+    network_mode: "none"

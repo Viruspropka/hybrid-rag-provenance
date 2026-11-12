@@ -13,13 +13,39 @@ optional extra, and their weights are downloaded by you on first use; none are i
 The bundled sample vault (21 notes) and the 51 labelled eval questions are synthetic: a
 fictional company "Quillmoor Labs" and its fictional product "Tidewell".
 
+## Demo
+
+![Terminal recording of the offline demo: hybrid fusion, a provenance conflict, degraded mode and a low-confidence answer](docs/demo.gif)
+
+One command, offline, on the synthetic vault:
+
+```bash
+make demo                 # creates ./.venv with numpy on first use, then runs nine scripted scenarios
+docker compose up         # same demo in a small image, no network (not tested on the machine that wrote this, see below)
+```
+
+The demo indexes the 21-note sample vault and prints, for each query, the rank, note id,
+score parts (relevance, provenance multiplier, final score), the retrieval source of each hit
+and the citation (file and heading). Scenarios, in order: hybrid fusion of dense and BM25;
+two price lists that are both still marked active, with the provenance layer off and on (the
+fresher, verified one wins); a chat summary against a reference page; the status filter and
+historical queries; the exact-key fast path; an unanswerable question that returns the
+`LOW CONFIDENCE` flag; degraded mode with the dense index deleted (keyword search still
+answers and says why); and a query served through the daemon. It ends with `demo OK`.
+
+The compose file runs the same command with `network_mode: none`, and the image bakes in the
+hashing embedder, so nothing is downloaded at build or run time. I could not run Docker on the
+machine where this was written (no Docker installed), so the compose path is **untested**; the
+Python path is what the recording and the tests use. A shot list for a narrated screen
+recording is in [docs/DEMO_SCRIPT.md](docs/DEMO_SCRIPT.md).
+
 ## Quickstart (no API keys, no model download)
 
 ```bash
 python3 -m venv .venv && . .venv/bin/activate
 pip install -r requirements-dev.txt     # numpy + pytest
 pip install -e .                        # installs the `hrag` command
-hrag demo                               # nine scenarios on the sample vault, ends with "demo OK"
+hrag demo                               # same as `make demo`, ends with "demo OK"
 python -m pytest -q                     # 86 tests
 make eval                               # offline evaluation, writes eval/runs/<UTC time>/ and RESULTS.md
 ```
@@ -43,6 +69,27 @@ hrag index --vault ~/notes --data-dir ~/.cache/hrag      # default model: BAAI/b
 ```
 
 ## Architecture in ten lines
+
+```mermaid
+flowchart LR
+    V[markdown vault] --> I[indexer]
+    I --> S[(SQLite: chunks + FTS5)]
+    I --> D[(dense.npy)]
+    Q[query: CLI or daemon] --> F{exact key?}
+    F -- yes --> X[fast path]
+    F -- no --> B[BM25 on FTS5]
+    F -- no --> C[cosine on dense matrix]
+    S --> B
+    D --> C
+    B --> R[RRF fusion]
+    C --> R
+    R --> K[optional reranker]
+    K --> P[provenance multipliers + status filter]
+    P --> O[ranked hits with citations]
+    X --> O
+    C -. dense unusable .-> G[degraded: keyword only, reason reported]
+    G --> P
+```
 
 1. `indexer` walks the vault, parses frontmatter, splits each note on `##` headings (long sections are windowed with overlap, short ones merged), and re-indexes only files whose sha1 changed.
 2. Chunks and their provenance fields go into one SQLite file: a `chunks` table plus an FTS5 table (`porter unicode61`).
@@ -198,6 +245,14 @@ keyword-only with the reason in the result instead of piling up.
   Lessons from it shaped the defaults: in production, strong trust and freshness multipliers
   on top of RRF made answers worse, which is why the factors here are narrow and why
   `rrf_k` is 20.
+
+## What this proves for a hiring manager
+
+- Hybrid retrieval: FTS5 BM25 plus dense cosine merged by reciprocal-rank fusion, see `src/hybrid_rag/fusion.py` and `src/hybrid_rag/retriever.py`.
+- Source-aware ranking: bounded multipliers from note frontmatter, each with a switch, see `src/hybrid_rag/provenance.py` and scenario 3 of `make demo`.
+- Graceful failure: dense index, model or memory problems fall back to keyword search and report why, see `src/hybrid_rag/retriever.py` and scenario 8 of `make demo`.
+- Evaluation habit: a frozen labelled question set with unanswerable questions, ablations and committed run logs, see `eval/run.py`, `RESULTS.md` and `make eval`.
+- Service shape: a warm daemon on a mode-600 Unix socket with a client fallback, plus tests for the failure paths, see `src/hybrid_rag/daemon.py` and `python -m pytest -q`.
 
 ## What this demonstrates
 

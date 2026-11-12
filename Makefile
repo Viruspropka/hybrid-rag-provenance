@@ -1,8 +1,18 @@
+# One-command demo: builds ./.venv with numpy on first use, then runs the nine scripted scenarios
+# on the synthetic sample vault. No network after the numpy wheel, no keys, no model download.
+demo: .venv/.ready
+	PYTHONPATH=src .venv/bin/python -m hybrid_rag demo
+
+.venv/.ready: requirements.txt
+	python3 -m venv .venv
+	.venv/bin/pip install --quiet -r requirements.txt
+	touch .venv/.ready
+
 # Offline evaluation. PYTHON can point at any interpreter with requirements-dev.txt installed.
 PYTHON ?= python3
 SEED ?= 42
 
-.PHONY: eval eval-minilm eval-bge-m3 results test
+.PHONY: demo eval eval-minilm eval-bge-m3 results test
 
 # Default profile: hashing embedder + lexical overlap reranker. No network, no keys, no downloads.
 eval:
