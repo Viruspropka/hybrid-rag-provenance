@@ -1,0 +1,18 @@
+{
+  "command": "python -m eval.run --seed 42",
+  "commit": "110d9caf6edcc892220f339e2d8a9a0507817cb0",
+  "machine": {
+    "cpu": "Apple M6",
+    "cpu_count": 12,
+    "os": "macOS-27.2-arm64-arm-64bit-Mach-O",
+    "python": "3.15.2",
+    "sqlite": "3.54.1"
+  },
+  "packages": {
+    "numpy": "2.5.4"
+  },
+  "run_id": "20261112T054202Z",
+  "started_utc": "2026-11-12T05:42:02+00:00",
+  "uncommitted_changes": [],
+  "wall_seconds": 0.26
+}
