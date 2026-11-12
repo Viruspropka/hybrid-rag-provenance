@@ -68,7 +68,7 @@ def note_statuses(root: Path) -> dict[str, str]:
 def retrieval_table(m: dict) -> str:
     lines = ["| Configuration | recall@1 | recall@5 | recall@10 | MRR@10 |", "|---|---:|---:|---:|---:|"]
     for c in m["configs"]:
-        o = m["retrieval"][c["key"]]["overall"]
+        o = m["retrieval"][c["id"]]["overall"]
         lines.append(f"| {c['name']} | {t3(o['recall@1'])} | {t3(o['recall@5'])} | {t3(o['recall@10'])} "
                      f"| {t3(o['mrr@10'])} |")
     return "\n".join(lines)
@@ -79,7 +79,7 @@ def tag_table(m: dict, metric: str) -> str:
     head = "| Configuration | " + " | ".join(f"{t} (n={m['tag_counts'][t]})" for t in tags) + " |"
     lines = [head, "|---|" + "---:|" * len(tags)]
     for c in m["configs"]:
-        bt = m["retrieval"][c["key"]]["by_tag"]
+        bt = m["retrieval"][c["id"]]["by_tag"]
         lines.append(f"| {c['name']} | " + " | ".join(t3(bt[t][metric]) for t in tags) + " |")
     return "\n".join(lines)
 

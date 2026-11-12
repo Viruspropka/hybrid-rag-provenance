@@ -136,7 +136,7 @@ def test_eval_runs_on_a_seeded_5_question_subset(tmp_path):
         assert {p.name for p in d.iterdir()} == {"run.log", "per_question.jsonl", "metrics.json", "environment.json"}
     m = json.loads((runs[0] / "metrics.json").read_text())
     assert m["n_questions"] == 5 and m["seed"] == 42 and m["profile"] == "hashing-512+overlap"
-    assert [c["key"] for c in m["configs"]] == [v.key for v in R.VARIANTS]
+    assert [c["id"] for c in m["configs"]] == [v.key for v in R.VARIANTS]
     for v in m["retrieval"].values():
         for key in ("recall@1", "recall@5", "recall@10", "mrr@10"):
             assert 0.0 <= v["overall"][key] <= 1.0

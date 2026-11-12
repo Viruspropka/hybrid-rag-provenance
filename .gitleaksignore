@@ -1,0 +1,7 @@
+# Verified false positives (generic-api-key) in commit a6a4017: the matched text is
+# "key": "hybrid_prov_k60", a configuration id in eval/runs/*/metrics.json, not a secret.
+# The field was renamed to "id" in the next commit; these fingerprints only cover that commit.
+a6a4017dc8fcbe692c3c19a30088c7e3229449c8:eval/runs/20261112T052038Z/metrics.json:generic-api-key:227
+a6a4017dc8fcbe692c3c19a30088c7e3229449c8:eval/runs/20261112T052036Z/metrics.json:generic-api-key:227
+a6a4017dc8fcbe692c3c19a30088c7e3229449c8:eval/runs/20261112T052059Z/metrics.json:generic-api-key:227
+a6a4017dc8fcbe692c3c19a30088c7e3229449c8:eval/runs/20261112T052037Z/metrics.json:generic-api-key:227

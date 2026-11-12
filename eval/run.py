@@ -300,7 +300,7 @@ def evaluate(args: argparse.Namespace, run_dir: Path) -> dict:
         "tag_counts": {t: sum(1 for q in items if q["tag"] == t) for t in TAGS},
         "reference_date": REFERENCE_DATE, "embedder": emb.name, "reranker": rr_name,
         "fastpath": "off", "depth": DEPTH, "fetch_chunks": FETCH_CHUNKS,
-        "configs": [{"key": v.key, "name": v.name, "mode": v.mode, "provenance": v.provenance,
+        "configs": [{"id": v.key, "name": v.name, "mode": v.mode, "provenance": v.provenance,
                      "status_filter": v.provenance, "rrf_k": v.rrf_k if v.mode == "hybrid" else None,
                      "reranker": rr_name if v.rerank else "none"} for v in variants],
         "retrieval": retrieval, "answer": answer_metrics,
